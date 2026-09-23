@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Environment / secrets (KHÔNG ĐƯỢC COMMIT)
+.env
+.env.*
+secrets.json
+
+# GitSecure log (KHÔNG ĐƯỢC COMMIT)
+gitsecure.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

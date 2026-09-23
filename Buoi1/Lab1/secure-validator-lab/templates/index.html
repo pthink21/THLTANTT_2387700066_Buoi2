@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SecureValidator — Demo</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f2f5;
+      color: #333;
+    }
+    header {
+      background: #1a237e;
+      color: #fff;
+      padding: 20px 40px;
+    }
+    header h1 { font-size: 1.8rem; }
+    header p  { font-size: 0.95rem; opacity: 0.85; margin-top: 4px; }
+    main {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .card h2 {
+      font-size: 1.15rem;
+      margin-bottom: 12px;
+      color: #1a237e;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .badge {
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: #e8eaf6;
+      color: #3949ab;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    label { font-size: 0.88rem; font-weight: 600; display: block; margin-bottom: 6px; }
+    input, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid #c5cae9;
+      border-radius: 6px;
+      font-size: 0.93rem;
+      font-family: 'Courier New', monospace;
+      transition: border-color 0.2s;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #3949ab;
+    }
+    textarea { resize: vertical; min-height: 80px; }
+    .btn {
+      margin-top: 12px;
+      background: #3949ab;
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-size: 0.93rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: #1a237e; }
+    .result-box {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      display: none;
+      line-height: 1.6;
+    }
+    .result-box.valid   { background: #e8f5e9; border-left: 4px solid #43a047; }
+    .result-box.invalid { background: #ffebee; border-left: 4px solid #e53935; }
+    .result-box.warning { background: #fff8e1; border-left: 4px solid #ffa000; }
+    .result-label { font-weight: 700; font-size: 0.95rem; margin-bottom: 6px; }
+    .result-detail { color: #555; }
+    .field-row { display: flex; gap: 12px; align-items: flex-start; flex-wrap: wrap; }
+    .field-row input { flex: 1; min-width: 0; }
+    .examples {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: #666;
+    }
+    .examples strong { color: #e53935; }
+    .examples span { cursor: pointer; text-decoration: underline; color: #3949ab; }
+    code {
+      background: #e8eaf6;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-size: 0.85rem;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.8rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🔐 SecureValidator</h1>
+  <p>Demo thư viện kiểm tra và làm sạch dữ liệu đầu vào — Thực hành Lập trình An ninh thông tin</p>
+</header>
+
+<main>
+
+  <!-- EMAIL -->
+  <div class="card">
+    <h2>📧 Validate Email <span class="badge">Email Injection</span></h2>
+    <label for="emailInput">Nhập địa chỉ email:</label>
+    <div class="field-row">
+      <input type="text" id="emailInput" placeholder="vd: user@example.com" />
+      <button class="btn" onclick="testEmail()">Kiểm tra</button>
+    </div>
+    <div class="examples">
+      Thử: 
+      <span onclick="setVal('emailInput','user@example.com')">user@example.com</span> |
+      <strong>Malicious:</strong>
+      <span onclick="setVal('emailInput','user@example.com\r\nBcc: evil@evil.com')">Header Injection</span> |
+      <span onclick="setVal('emailInput','not-an-email')">invalid format</span>
+    </div>
+    <div class="result-box" id="emailResult"></div>
+  </div>
+
+  <!-- URL -->
+  <div class="card">
+    <h2>🌐 Validate URL <span class="badge">SSRF Prevention</span></h2>
+    <label for="urlInput">Nhập URL:</label>
+    <div class="field-row">
+      <input type="text" id="urlInput" placeholder="vd: https://example.com" />
+      <button class="btn" onclick="testUrl()">Kiểm tra</button>
+    </div>
+    <div class="examples">
+      Thử:
+      <span onclick="setVal('urlInput','https://example.com')">https://example.com</span> |
+      <strong>SSRF:</strong>
+      <span onclick="setVal('urlInput','http://192.168.1.1')">Private IP</span> |
+      <span onclick="setVal('urlInput','http://localhost')">localhost</span> |
+      <span onclick="setVal('urlInput','file:///etc/passwd')">file:// scheme</span>
+    </div>
+    <div class="result-box" id="urlResult"></div>
+  </div>
+
+  <!-- FILENAME -->
+  <div class="card">
+    <h2>📁 Validate Filename <span class="badge">Path Traversal</span></h2>
+    <label for="filenameInput">Nhập tên file:</label>
+    <div class="field-row">
+      <input type="text" id="filenameInput" placeholder="vd: document.pdf" />
+      <button class="btn" onclick="testFilename()">Kiểm tra</button>
+    </div>
+    <div class="examples">
+      Thử:
+      <span onclick="setVal('filenameInput','document.pdf')">document.pdf</span> |
+      <strong>Malicious:</strong>
+      <span onclick="setVal('filenameInput','../../../etc/passwd')">Path Traversal ../</span> |
+      <span onclick="setVal('filenameInput','..\\..\\windows\\system32')">Path Traversal ..\</span> |
+      <span onclick="setVal('filenameInput','/etc/passwd')">Absolute path</span>
+    </div>
+    <div class="result-box" id="filenameResult"></div>
+  </div>
+
+  <!-- SQL -->
+  <div class="card">
+    <h2>🗄️ Sanitize SQL Input <span class="badge">SQL Injection</span></h2>
+    <label for="sqlInput">Nhập chuỗi SQL input:</label>
+    <textarea id="sqlInput" placeholder="vd: John Doe"></textarea>
+    <button class="btn" onclick="testSql()">Làm sạch</button>
+    <div class="examples">
+      Thử:
+      <span onclick="setVal('sqlInput','John Doe')">John Doe (normal)</span> |
+      <strong>SQL Injection:</strong>
+      <span onclick="setVal('sqlInput',&quot;' OR 1=1 --&quot;)">OR 1=1</span> |
+      <span onclick="setVal('sqlInput','admin&apos;; DROP TABLE users;--')">DROP TABLE</span> |
+      <span onclick="setVal('sqlInput','1 UNION SELECT * FROM passwords')">UNION SELECT</span>
+    </div>
+    <div class="result-box" id="sqlResult"></div>
+  </div>
+
+  <!-- HTML -->
+  <div class="card">
+    <h2>🛡️ Sanitize HTML Input <span class="badge">XSS Prevention</span></h2>
+    <label for="htmlInput">Nhập chuỗi HTML:</label>
+    <textarea id="htmlInput" placeholder="vd: <b>Hello</b>"></textarea>
+    <button class="btn" onclick="testHtml()">Làm sạch</button>
+    <div class="examples">
+      Thử:
+      <span onclick="setVal('htmlInput','<b>Hello</b> <p>World</p>')">HTML bình thường</span> |
+      <strong>XSS:</strong>
+      <span onclick="setVal('htmlInput','<script>alert(1)</script>')">script tag</span> |
+      <span onclick="setVal('htmlInput','<img src=x onerror=alert(1)>')">img onerror</span> |
+      <span onclick="setVal('htmlInput','<a href=javascript:alert(1)>click</a>')">javascript: href</span>
+    </div>
+    <div class="result-box" id="htmlResult"></div>
+  </div>
+
+</main>
+
+<footer>
+  Thực hành Lập trình An ninh thông tin — SecureValidator Demo
+</footer>
+
+<script>
+function setVal(id, val) {
+  document.getElementById(id).value = val;
+}
+
+function showResult(id, data) {
+  const el = document.getElementById(id);
+  el.style.display = 'block';
+  el.innerHTML = data;
+}
+
+async function post(url, body) {
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(body),
+  });
+  return res.json();
+}
+
+async function testEmail() {
+  const val = document.getElementById('emailInput').value;
+  const data = await post('/api/validate/email', {email: val});
+  const r = data.result;
+  const cls = r.valid ? 'valid' : 'invalid';
+  const icon = r.valid ? '✅' : '❌';
+  showResult('emailResult',
+    `<div class="result-box ${cls}" style="display:block">
+      <div class="result-label">${icon} ${r.valid ? 'Hợp lệ' : 'Không hợp lệ'}</div>
+      <div class="result-detail"><strong>Input:</strong> <code>${esc(data.input)}</code></div>
+      <div class="result-detail"><strong>Lý do:</strong> ${esc(r.reason)}</div>
+    </div>`
+  );
+  document.getElementById('emailResult').style.display = 'none';
+  const box = document.createElement('div');
+  box.className = `result-box ${cls}`;
+  box.style.display = 'block';
+  box.innerHTML = `<div class="result-label">${icon} ${r.valid ? 'Hợp lệ' : 'Không hợp lệ'}</div>
+    <div class="result-detail"><strong>Input:</strong> <code>${esc(data.input)}</code></div>
+    <div class="result-detail"><strong>Lý do:</strong> ${esc(r.reason)}</div>`;
+  const parent = document.getElementById('emailResult');
+  parent.parentNode.replaceChild(box, parent);
+  box.id = 'emailResult';
+}
+
+async function testUrl() {
+  const val = document.getElementById('urlInput').value;
+  const data = await post('/api/validate/url', {url: val});
+  const r = data.result;
+  renderValidResult('urlResult', r, data.input);
+}
+
+async function testFilename() {
+  const val = document.getElementById('filenameInput').value;
+  const data = await post('/api/validate/filename', {filename: val});
+  const r = data.result;
+  renderValidResult('filenameResult', r, data.input);
+}
+
+async function testSql() {
+  const val = document.getElementById('sqlInput').value;
+  const data = await post('/api/sanitize/sql', {input: val});
+  const r = data.result;
+  const cls = r.is_suspicious ? 'warning' : 'valid';
+  const icon = r.is_suspicious ? '⚠️' : '✅';
+  const label = r.is_suspicious ? 'Phát hiện SQL Injection pattern!' : 'An toàn';
+  const warn = r.warnings.length ? '<br><strong>Cảnh báo:</strong> ' + r.warnings.map(w => esc(w)).join('; ') : '';
+  replaceResult('sqlResult', cls, `<div class="result-label">${icon} ${label}</div>
+    <div class="result-detail"><strong>Input gốc:</strong> <code>${esc(data.input)}</code></div>
+    <div class="result-detail"><strong>Đã làm sạch:</strong> <code>${esc(r.sanitized)}</code></div>
+    ${warn}
+    <div class="result-detail" style="margin-top:8px;font-size:0.8rem;color:#888;">
+      ⚠️ Lưu ý: Luôn dùng Parameterized Queries để phòng SQL Injection. Sanitization chỉ là lớp bổ sung.
+    </div>`);
+}
+
+async function testHtml() {
+  const val = document.getElementById('htmlInput').value;
+  const data = await post('/api/sanitize/html', {input: val});
+  const r = data.result;
+  const cls = r.was_modified ? 'warning' : 'valid';
+  const icon = r.was_modified ? '⚠️' : '✅';
+  const label = r.was_modified ? 'HTML đã được làm sạch (phát hiện nội dung nguy hiểm)' : 'HTML an toàn';
+  replaceResult('htmlResult', cls, `<div class="result-label">${icon} ${label}</div>
+    <div class="result-detail"><strong>Input gốc:</strong> <code>${esc(data.input)}</code></div>
+    <div class="result-detail"><strong>Đã làm sạch:</strong> <code>${esc(r.sanitized)}</code></div>`);
+}
+
+function renderValidResult(id, r, input) {
+  const cls = r.valid ? 'valid' : 'invalid';
+  const icon = r.valid ? '✅' : '❌';
+  replaceResult(id, cls, `<div class="result-label">${icon} ${r.valid ? 'Hợp lệ' : 'Không hợp lệ'}</div>
+    <div class="result-detail"><strong>Input:</strong> <code>${esc(input)}</code></div>
+    <div class="result-detail"><strong>Lý do:</strong> ${esc(r.reason)}</div>`);
+}
+
+function replaceResult(id, cls, html) {
+  const old = document.getElementById(id);
+  const box = document.createElement('div');
+  box.className = `result-box ${cls}`;
+  box.style.display = 'block';
+  box.innerHTML = html;
+  box.id = id;
+  old.parentNode.replaceChild(box, old);
+}
+
+function esc(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+</script>
+</body>
+</html>
