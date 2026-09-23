@@ -6,7 +6,7 @@ Repository này chứa các bài thực hành môn **Thực hành Lập trình A
 
 ---
 
-## Bài 1 — Cơ sở Lập trình Bảo mật, Kiểm tra Đầu vào
+## Buổi 1 — Cơ sở Lập trình Bảo mật, Kiểm tra Đầu vào
 
 ### Lab 1 — SecureValidator
 
