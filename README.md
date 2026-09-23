@@ -1,4 +1,4 @@
-# THLTANTT
+# THLTANTT - NGUYỄN PHÚC THỊNH
 
 ## Thực hành Lập trình An ninh thông tin
 
