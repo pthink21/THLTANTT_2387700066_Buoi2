@@ -17,7 +17,10 @@ Thư viện Python kiểm tra và làm sạch dữ liệu đầu vào, phòng ch
 - SQL Injection
 - XSS (Cross-Site Scripting)
 
-📁 [Bai1/Lab1](Bai1/Lab1) | 📖 [README](Bai1/Lab1/README.md)
+📁 [Buoi1/Lab1](Buoi1/Lab1) | 📖 [README](Buoi1/Lab1/README.md)
+
+**Kết quả chạy:** 50/50 unit test PASS, Flask demo app tại http://127.0.0.1:5000
+<img src="docs/screenshots/lab1_securevalidator.png" width="600" alt="Lab1 SecureValidator demo"/>
 
 ### Lab 2 — GitSecure
 
@@ -28,7 +31,10 @@ Hệ thống pre-commit hook tự động kiểm tra bảo mật mã nguồn tr�
 - Kiểm tra file permission
 - Kiểm tra license compliance
 
-📁 [Bai1/Lab2](Bai1/Lab2) | 📖 [README](Bai1/Lab2/README.md)
+📁 [Buoi1/Lab2](Buoi1/Lab2) | 📖 [README](Buoi1/Lab2/README.md)
+
+**Kết quả chạy:** Hook phát hiện `API Key hard-coded` → chặn commit (exit code 1)
+<img src="docs/screenshots/lab2_gitsecure.png" width="600" alt="Lab2 GitSecure hook demo"/>
 
 ### Lab 3 — SecureLogger
 
@@ -39,7 +45,10 @@ Hệ thống ghi nhật ký bảo mật với:
 - Structured JSON logging
 - Tích hợp với SecureValidator
 
-📁 [Bai1/Lab3](Bai1/Lab3) | 📖 [README](Bai1/Lab3/README.md)
+📁 [Buoi1/Lab3](Buoi1/Lab3) | 📖 [README](Buoi1/Lab3/README.md)
+
+**Kết quả chạy:** Flask API tại http://127.0.0.1:5001, PII masking + tính toàn vẹn log verified
+<img src="docs/screenshots/lab3_securelogger.png" width="600" alt="Lab3 SecureLogger demo"/>
 
 ---
 
@@ -64,7 +73,7 @@ Hệ thống ghi nhật ký bảo mật với:
 ```
 THLTANTT/
 │
-├── Bai1/
+├── Buoi1/
 │   ├── Lab1/
 │   │   ├── secure-validator-lab/
 │   │   │   ├── app.py                  # Flask web demo
@@ -111,7 +120,7 @@ THLTANTT/
 ### Lab 1 — SecureValidator
 
 ```bash
-cd Bai1/Lab1/secure-validator-lab
+cd Buoi1/Lab1/secure-validator-lab
 pip install -r requirements.txt
 
 # Chạy unit tests (50 tests)
@@ -125,24 +134,24 @@ python app.py
 ### Lab 2 — GitSecure Pre-commit Hook
 
 ```bash
-cd Bai1/Lab2/gitsecure
+cd Buoi1/Lab2/gitsecure
 pip install -r requirements.txt
 
 # Gắn hook vào git (từ root repository)
-git config core.hooksPath Bai1/Lab2/gitsecure/.githooks
+git config core.hooksPath Buoi1/Lab2/gitsecure/.githooks
 
 # Cấp quyền (Git Bash / Linux)
-chmod +x Bai1/Lab2/gitsecure/.githooks/pre-commit
+chmod +x Buoi1/Lab2/gitsecure/.githooks/pre-commit
 
 # Test bằng cách thử commit file có vấn đề
-git add Bai1/Lab2/gitsecure/bad.py
+git add Buoi1/Lab2/gitsecure/bad.py
 git commit -m "test"  # → Sẽ bị chặn!
 ```
 
 ### Lab 3 — SecureLogger
 
 ```bash
-cd Bai1/Lab3/secure-logger-lab
+cd Buoi1/Lab3/secure-logger-lab
 pip install -r requirements.txt
 
 # Chạy Flask API
