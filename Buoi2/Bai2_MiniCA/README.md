@@ -187,17 +187,17 @@ is_revoked = check_revocation_status("certs/nguyen_phuc_thinh_cert.pem")
 
 | # | Ảnh minh chứng |
 |---|----------------|
-| 1 | ![Demo Output](screenshots/01_demo_output.png) |
-| 2 | ![Cert Listing](screenshots/02_cert_listing.png) |
-| 3 | ![Root CA Details](screenshots/03_root_ca_details.png) |
-| 4 | ![Intermediate CA Details](screenshots/04_intermediate_ca_details.png) |
-| 5 | ![End-Entity Cert Details](screenshots/05_endentity_cert_details.png) |
-| 6 | ![Chain Verification](screenshots/06_chain_verification.png) |
-| 7 | ![CRL Contents](screenshots/07_crl_contents.png) |
-| 8 | ![Revocation Status](screenshots/08_revocation_status.png) |
-| 9 | ![OCSP Status](screenshots/09_ocsp_status.png) |
-| 10 | ![Cert Hierarchy](screenshots/10_cert_hierarchy.png) |
-| 11 | ![GUI App](screenshots/11_gui_app.png) |
+| 1 | ![Demo Output](../screenshots/01_demo_output.png) |
+| 2 | ![Cert Listing](../screenshots/02_cert_listing.png) |
+| 3 | ![Root CA Details](../screenshots/03_root_ca_details.png) |
+| 4 | ![Intermediate CA Details](../screenshots/04_intermediate_ca_details.png) |
+| 5 | ![End-Entity Cert Details](../screenshots/05_endentity_cert_details.png) |
+| 6 | ![Chain Verification](../screenshots/06_chain_verification.png) |
+| 7 | ![CRL Contents](../screenshots/07_crl_contents.png) |
+| 8 | ![Revocation Status](../screenshots/08_revocation_status.png) |
+| 9 | ![OCSP Status](../screenshots/09_ocsp_status.png) |
+| 10 | ![Cert Hierarchy](../screenshots/10_cert_hierarchy.png) |
+| 11 | ![GUI App](../screenshots/11_gui_app.png) |
 
 ---
 

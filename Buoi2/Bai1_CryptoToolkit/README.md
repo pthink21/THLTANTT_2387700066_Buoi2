@@ -192,16 +192,16 @@ pytest -v
 
 | # | Ảnh minh chứng |
 |---|----------------|
-| 1 | ![Unit Tests](screenshots/01_unit_tests.png) |
-| 2 | ![AES Encrypt](screenshots/02_aes_encrypt.png) |
-| 3 | ![AES Decrypt](screenshots/03_aes_decrypt.png) |
-| 4 | ![RSA GenKey](screenshots/04_rsa_genkey.png) |
-| 5 | ![RSA Sign](screenshots/05_rsa_sign.png) |
-| 6 | ![RSA Verify](screenshots/06_rsa_verify.png) |
-| 7 | ![Argon2 Hash](screenshots/07_argon2_hash.png) |
-| 8 | ![Flask API](screenshots/08_flask_api.png) |
-| 9 | ![File Listing](screenshots/09_file_listing.png) |
-| 10 | ![GUI App](screenshots/10_gui_app.png) |
+| 1 | ![Unit Tests](../screenshots/01_unit_tests.png) |
+| 2 | ![AES Encrypt](../screenshots/02_aes_encrypt.png) |
+| 3 | ![AES Decrypt](../screenshots/03_aes_decrypt.png) |
+| 4 | ![RSA GenKey](../screenshots/04_rsa_genkey.png) |
+| 5 | ![RSA Sign](../screenshots/05_rsa_sign.png) |
+| 6 | ![RSA Verify](../screenshots/06_rsa_verify.png) |
+| 7 | ![Argon2 Hash](../screenshots/07_argon2_hash.png) |
+| 8 | ![Flask API](../screenshots/08_flask_api.png) |
+| 9 | ![File Listing](../screenshots/09_file_listing.png) |
+| 10 | ![GUI App](../screenshots/10_gui_app.png) |
 
 ---
 

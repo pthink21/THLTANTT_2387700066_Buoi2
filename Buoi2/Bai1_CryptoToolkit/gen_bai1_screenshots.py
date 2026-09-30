@@ -29,7 +29,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageGrab
 # --------------------------------------------------------------------------- #
 
 BASE = Path(__file__).resolve().parent
-SCREENSHOTS = BASE / "screenshots"
+SCREENSHOTS = BASE.parent / "screenshots"  # root screenshots/
 SCREENSHOTS.mkdir(exist_ok=True)
 
 sys.path.insert(0, str(BASE))

@@ -1,7 +1,7 @@
 # THLTANTT Lab 02 — CryptoToolkit & Mini CA
 
 > **Môn học:** THLTANTT — Lập trình Bảo mật Thông tin (Practical Information Security Programming)  
-> **Sinh viên:** Nguyễn Phúc Thọai — MSSV: 2387700066  
+> **Sinh viên:** Nguyễn Phúc Thinh — MSSV: 2387700066  
 > **Giảng viên:** *(theo lớp)*
 
 ---
@@ -14,6 +14,7 @@
 4. [Bài 2 — Mini CA](#bài-2--mini-ca)
 5. [Cài đặt](#cài-đặt)
 6. [Chạy thử](#chạy-thử)
+7. [Ảnh minh chứng](#ảnh-minh-chứng)
 
 ---
 
@@ -30,7 +31,7 @@ Bài thực hành này bao phủ hai chủ đề chính trong mã hóa và an ni
 
 ```
 THLTANTT_2387700066_Buoi2/
-├── README.md                          ← file này
+├── README.md                        ← file này
 │
 ├── Bai1_CryptoToolkit/
 │   ├── README.md
@@ -50,7 +51,6 @@ THLTANTT_2387700066_Buoi2/
 │   │   └── test_rsa_utils.py
 │   ├── files/
 │   │   └── data.txt
-│   ├── screenshots/
 │   └── gen_bai1_screenshots.py
 │
 ├── Bai2_MiniCA/
@@ -61,11 +61,31 @@ THLTANTT_2387700066_Buoi2/
 │   ├── demo.py
 │   ├── demo_ui.py
 │   ├── .gitignore
-│   ├── certs/           (chứng chỉ và khóa sinh tự động)
-│   ├── screenshots/
+│   ├── certs/               (chứng chỉ và khóa — sinh tự động)
 │   └── gen_bai2_screenshots.py
 │
-├── Bai1_CryptoToolkit/gen_bai1_screenshots.py  (script tạo ảnh Bài 1)
+└── screenshots/             ← ảnh minh chứng chung (Bài 1 + Bài 2)
+    ├── 01_unit_tests.png           (Bài 1)
+    ├── 02_aes_encrypt.png           (Bài 1)
+    ├── 03_aes_decrypt.png           (Bài 1)
+    ├── 04_rsa_genkey.png            (Bài 1)
+    ├── 05_rsa_sign.png              (Bài 1)
+    ├── 06_rsa_verify.png            (Bài 1)
+    ├── 07_argon2_hash.png           (Bài 1)
+    ├── 08_flask_api.png             (Bài 1)
+    ├── 09_file_listing.png          (Bài 1)
+    ├── 10_gui_app.png               (Bài 1)
+    ├── 01_demo_output.png           (Bài 2)
+    ├── 02_cert_listing.png          (Bài 2)
+    ├── 03_root_ca_details.png       (Bài 2)
+    ├── 04_intermediate_ca_details.png (Bài 2)
+    ├── 05_endentity_cert_details.png  (Bài 2)
+    ├── 06_chain_verification.png    (Bài 2)
+    ├── 07_crl_contents.png          (Bài 2)
+    ├── 08_revocation_status.png     (Bài 2)
+    ├── 09_ocsp_status.png           (Bài 2)
+    ├── 10_cert_hierarchy.png        (Bài 2)
+    └── 11_gui_app.png               (Bài 2)
 ```
 
 ---
@@ -90,11 +110,6 @@ THLTANTT_2387700066_Buoi2/
 ```bash
 cd Bai1_CryptoToolkit
 pip install -r requirements.txt
-```
-
-### Test
-
-```bash
 pytest -v  # 18 tests, tất cả PASS
 ```
 
@@ -122,7 +137,7 @@ Xem chi tiết trong [Bai1_CryptoToolkit/README.md](Bai1_CryptoToolkit/README.md
 ```bash
 cd Bai2_MiniCA
 pip install -r requirements.txt
-python demo.py        # chạy demo CLI
+python demo.py        # chạy demo CLI (8 bước)
 python demo_ui.py     # mở GUI
 ```
 
@@ -147,6 +162,41 @@ cd Bai1_CryptoToolkit && pytest -v
 # Bài 2: chạy demo Mini CA
 cd ../Bai2_MiniCA && python demo.py
 ```
+
+---
+
+## Ảnh minh chứng
+
+### Bài 1 — CryptoToolkit (10 ảnh)
+
+| # | Ảnh minh chứng |
+|---|----------------|
+| 1 | ![Unit Tests](screenshots/01_unit_tests.png) |
+| 2 | ![AES Encrypt](screenshots/02_aes_encrypt.png) |
+| 3 | ![AES Decrypt](screenshots/03_aes_decrypt.png) |
+| 4 | ![RSA GenKey](screenshots/04_rsa_genkey.png) |
+| 5 | ![RSA Sign](screenshots/05_rsa_sign.png) |
+| 6 | ![RSA Verify](screenshots/06_rsa_verify.png) |
+| 7 | ![Argon2 Hash](screenshots/07_argon2_hash.png) |
+| 8 | ![Flask API](screenshots/08_flask_api.png) |
+| 9 | ![File Listing](screenshots/09_file_listing.png) |
+| 10 | ![GUI App](screenshots/10_gui_app.png) |
+
+### Bài 2 — Mini CA (11 ảnh)
+
+| # | Ảnh minh chứng |
+|---|----------------|
+| 1 | ![Demo Output](screenshots/01_demo_output.png) |
+| 2 | ![Cert Listing](screenshots/02_cert_listing.png) |
+| 3 | ![Root CA Details](screenshots/03_root_ca_details.png) |
+| 4 | ![Intermediate CA Details](screenshots/04_intermediate_ca_details.png) |
+| 5 | ![End-Entity Cert Details](screenshots/05_endentity_cert_details.png) |
+| 6 | ![Chain Verification](screenshots/06_chain_verification.png) |
+| 7 | ![CRL Contents](screenshots/07_crl_contents.png) |
+| 8 | ![Revocation Status](screenshots/08_revocation_status.png) |
+| 9 | ![OCSP Status](screenshots/09_ocsp_status.png) |
+| 10 | ![Cert Hierarchy](screenshots/10_cert_hierarchy.png) |
+| 11 | ![GUI App](screenshots/11_gui_app.png) |
 
 ---
 
