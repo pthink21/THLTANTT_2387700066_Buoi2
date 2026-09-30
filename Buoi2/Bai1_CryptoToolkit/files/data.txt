@@ -1,0 +1,4 @@
+This is a secret message for AES encryption testing.
+The CryptoToolkit will encrypt and decrypt this file using AES-256-GCM.
+Author: Nguyen Phuc Thinh - MSSV: 2387700066
+Subject: THLTANTT Lab 02 - Bai 1 Crypto Toolkit
