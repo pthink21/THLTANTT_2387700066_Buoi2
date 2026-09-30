@@ -185,19 +185,19 @@ is_revoked = check_revocation_status("certs/nguyen_phuc_thinh_cert.pem")
 
 ## Screenshots
 
-| # | Tên file | Nội dung |
-|---|----------|----------|
-| 1 | `01_demo_output.png` | Toàn bộ output demo.py (8 bước) |
-| 2 | `02_cert_listing.png` | Danh sách file .pem trong certs/ |
-| 3 | `03_root_ca_details.png` | Chi tiết Root CA certificate |
-| 4 | `04_intermediate_ca_details.png` | Chi tiết Intermediate CA certificate |
-| 5 | `05_endentity_cert_details.png` | Chi tiết End-Entity certificate (Nguyen Phuc Thinh) |
-| 6 | `06_chain_verification.png` | Xác thực certificate chain |
-| 7 | `07_crl_contents.png` | Nội dung CRL (Certificate Revocation List) |
-| 8 | `08_revocation_status.png` | Trạng thái revocation status |
-| 9 | `09_ocsp_status.png` | OCSP status check |
-| 10 | `10_cert_hierarchy.png` | Sơ đồ cấu trúc certificate hierarchy |
-| 11 | `11_gui_app.png` | Giao diện GUI Tkinter |
+| # | Ảnh minh chứng |
+|---|----------------|
+| 1 | ![Demo Output](screenshots/01_demo_output.png) |
+| 2 | ![Cert Listing](screenshots/02_cert_listing.png) |
+| 3 | ![Root CA Details](screenshots/03_root_ca_details.png) |
+| 4 | ![Intermediate CA Details](screenshots/04_intermediate_ca_details.png) |
+| 5 | ![End-Entity Cert Details](screenshots/05_endentity_cert_details.png) |
+| 6 | ![Chain Verification](screenshots/06_chain_verification.png) |
+| 7 | ![CRL Contents](screenshots/07_crl_contents.png) |
+| 8 | ![Revocation Status](screenshots/08_revocation_status.png) |
+| 9 | ![OCSP Status](screenshots/09_ocsp_status.png) |
+| 10 | ![Cert Hierarchy](screenshots/10_cert_hierarchy.png) |
+| 11 | ![GUI App](screenshots/11_gui_app.png) |
 
 ---
 
